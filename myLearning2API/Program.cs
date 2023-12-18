@@ -1,10 +1,22 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using myLearning2API.Setup;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+//Configuration for dependencies
+var myLearningConnectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+DependenciesConfig.ConfigurDependencies(builder.Services, myLearningConnectionString);
+
+
+//configuration for Mapper
+var config = new AutoMapper.Configuration.MapperConfigurationExpression();
+AutoMapperConfig.Configure(config);
 
 
 //Jwt configuration starts here
