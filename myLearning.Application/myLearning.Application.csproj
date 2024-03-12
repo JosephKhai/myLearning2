@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +11,8 @@
     <Folder Include="City\Queries\" />
     <Folder Include="Country\Commands\" />
     <Folder Include="Country\Queries\" />
+    <Folder Include="myOwnFeatures\Commands\" />
+    <Folder Include="myOwnFeatures\Queries\" />
     <Folder Include="Weather\Commands\" />
     <Folder Include="Weather\Queries\" />
   </ItemGroup>

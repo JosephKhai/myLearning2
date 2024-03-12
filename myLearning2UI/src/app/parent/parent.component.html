@@ -1,0 +1,9 @@
+<h1>Hello This is Parent Component</h1>
+
+<p>Message from child component: {{childMessage}}</p>
+
+<div class="container">
+    <p>Child component display</p>
+    <app-child [message]="message" (messageOut)="receiveMessage($event)"></app-child>
+</div>
+

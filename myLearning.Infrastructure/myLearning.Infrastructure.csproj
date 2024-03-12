@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\myLearning.Application\myLearning.Application.csproj" />
+    <ProjectReference Include="..\myLearning.Common.Entities\myLearning.Common.Entities.csproj" />
     <ProjectReference Include="..\myLearning.Entities\myLearning.Entities.csproj" />
   </ItemGroup>
 

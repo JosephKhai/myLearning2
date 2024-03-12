@@ -3,8 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using myLearning.Common.Infrastructure;
 using myLearning.DataAccess.EFCore;
 using myLearning.DataAccess.EFCore.DbContexts;
-using myLearning.DataAccess.EFCore.Repositories;
-using myLearning.Infrastructure.IRepositories;
 
 namespace myLearning.DIContainer
 {
@@ -22,8 +20,8 @@ namespace myLearning.DIContainer
 
 
             //add IRepository and IServices here
-            services.AddTransient<ICityRepository, CityRepository>();
-            services.AddTransient<ICountryRepository, CountryRepository>();
+            //services.AddTransient<ICityRepository, CityRepository>();
+            //services.AddTransient<ICountryRepository, CountryRepository>();
         }
     }
 }

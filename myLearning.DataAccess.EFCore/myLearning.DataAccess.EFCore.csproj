@@ -20,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\myLearning.Common.DataAccess.EFCore\myLearning.Common.DataAccess.EFCore.csproj" />
+    <ProjectReference Include="..\myLearning.Common.Infrastructure\myLearning.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\myLearning.Entities\myLearning.Entities.csproj" />
     <ProjectReference Include="..\myLearning.Infrastructure\myLearning.Infrastructure.csproj" />
   </ItemGroup>

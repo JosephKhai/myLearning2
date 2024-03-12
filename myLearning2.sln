@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myLearning.Common.Entities"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myLearning.Common.Application", "myLearning.Common.Application\myLearning.Common.Application.csproj", "{F5A17D05-5570-4E21-BBEF-7618A8F15BB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myLearning.Common.Infrastructure", "myLearning.Common.Infrastructure\myLearning.Common.Infrastructure.csproj", "{51CC2054-180C-4474-BE32-A95D092C72B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{F5A17D05-5570-4E21-BBEF-7618A8F15BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5A17D05-5570-4E21-BBEF-7618A8F15BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5A17D05-5570-4E21-BBEF-7618A8F15BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51CC2054-180C-4474-BE32-A95D092C72B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51CC2054-180C-4474-BE32-A95D092C72B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51CC2054-180C-4474-BE32-A95D092C72B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51CC2054-180C-4474-BE32-A95D092C72B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +94,7 @@ Global
 		{2DD058FC-72A9-4F87-A6C1-C42DB421D93B} = {C31ABB6F-7DF9-4F0C-9546-A781322CB5B1}
 		{42BA8DDF-B150-4E7E-B181-C80BFC861BDA} = {C31ABB6F-7DF9-4F0C-9546-A781322CB5B1}
 		{F5A17D05-5570-4E21-BBEF-7618A8F15BB6} = {C31ABB6F-7DF9-4F0C-9546-A781322CB5B1}
+		{51CC2054-180C-4474-BE32-A95D092C72B3} = {C31ABB6F-7DF9-4F0C-9546-A781322CB5B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAA485DD-7B5E-4160-BA6C-B0ECF4DDEE13}
