@@ -4,7 +4,7 @@
 
 namespace myLearning.DataAccess.EFCore.Migrations
 {
-    public partial class Initial : Migration
+    public partial class databasemodelchange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +14,9 @@ namespace myLearning.DataAccess.EFCore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ISO2 = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ISO3 = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ISO2 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ISO3 = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,7 +29,7 @@ namespace myLearning.DataAccess.EFCore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Lat = table.Column<decimal>(type: "decimal(7,4)", nullable: false),
                     Lon = table.Column<decimal>(type: "decimal(7,4)", nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false)

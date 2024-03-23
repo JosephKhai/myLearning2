@@ -39,7 +39,6 @@ namespace myLearning.DataAccess.EFCore.Migrations
                         .HasColumnType("decimal(7,4)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -52,7 +51,7 @@ namespace myLearning.DataAccess.EFCore.Migrations
 
                     b.HasIndex("Name");
 
-                    b.ToTable("Cities", (string)null);
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("myLearning.Entities.Country", b =>
@@ -64,15 +63,12 @@ namespace myLearning.DataAccess.EFCore.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ISO2")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ISO3")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -83,7 +79,7 @@ namespace myLearning.DataAccess.EFCore.Migrations
 
                     b.HasIndex("Name");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("myLearning.Entities.City", b =>

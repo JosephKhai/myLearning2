@@ -40,7 +40,7 @@ namespace myLearning2API.Controllers
             var worksheet = excelPackage.Workbook.Worksheets[0];
 
             //define how many rows we want to process
-            var nEndRow = 100;//worksheet.Dimension.End.Row;
+            var nEndRow = 50;//worksheet.Dimension.End.Row;
 
             //initialize the record counters
             var numberOfCountriesAdded = 0;
@@ -63,11 +63,6 @@ namespace myLearning2API.Controllers
                 var iso2 = row[nRow, 6].GetValue<string>();
                 var iso3 = row[nRow, 7].GetValue<string>();
 
-
-                //skip this country if it already exists in the database
-                if (countriesByName.ContainsKey(countryName))
-                    continue;
-
                 //create the Country entity and fill it with xlsx data
                 var country = new Country
                 {
@@ -76,21 +71,26 @@ namespace myLearning2API.Controllers
                     ISO3 = iso3,
                 };
 
+                //skip this country if it already exists in the database
+                if (!countriesByName.ContainsKey(countryName))
+                {
+                    //store the country in our lookup to retrieve its ID later on
+                    countriesByName.Add(countryName, country);
+                }else
+                {
+                    continue;
+                }
+                 
+
                 //add the new country to the DB context
                 await _dbContexts.Countries.AddAsync(country);
+                numberOfCountriesAdded++;
 
-                //store the country in our lookup to retrieve its ID later on
-                countriesByName.Add(countryName, country);
-
-                //increment the counter
-                numberOfCitiesAdded++;
+ 
             }
 
             //save all the countries into the Database
-            if (numberOfCountriesAdded > 0)
-            {
-                await _dbContexts.SaveChangesAsync();
-            }
+            await _dbContexts.SaveChangesAsync();
 
 
             //create a lookup dictionary
@@ -141,13 +141,12 @@ namespace myLearning2API.Controllers
 
                 //add the new city to the Db Context
                 _dbContexts.Cities.Add(city);
+                numberOfCitiesAdded++;
 
 
                 //save all the cities into the database
-                if (numberOfCitiesAdded > 0)
-                {
-                    await _dbContexts.SaveChangesAsync();
-                }
+                 await _dbContexts.SaveChangesAsync();
+                
             }
 
             return new JsonResult(new

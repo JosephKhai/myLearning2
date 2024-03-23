@@ -22,8 +22,8 @@ namespace myLearning.DataAccess.EFCore.DbContexts
             base.OnModelCreating(modelBuilder);
 
             //EntityTypeConfiguration classes
-            modelBuilder.ApplyConfiguration(new CityConfig());
-            modelBuilder.ApplyConfiguration(new CountryConfig());
+            //modelBuilder.ApplyConfiguration(new CityConfig());
+            //modelBuilder.ApplyConfiguration(new CountryConfig());
 
 
             ////OR Fluet API
