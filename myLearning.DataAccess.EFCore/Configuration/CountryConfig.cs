@@ -4,9 +4,9 @@ using myLearning.Entities;
 
 namespace myLearning.DataAccess.EFCore.Configuration
 {
-    public class CountryConfig : IEntityTypeConfiguration<Country>
+    public class CountryConfig : IEntityTypeConfiguration<Countries>
     {
-        public void Configure(EntityTypeBuilder<Country> builder)
+        public void Configure(EntityTypeBuilder<Countries> builder)
         {
 
             builder.ToTable("Countries");
@@ -18,8 +18,8 @@ namespace myLearning.DataAccess.EFCore.Configuration
 
             builder
                 .HasMany(x => x.Cities)
-                .WithOne(c => c.Country)  // Assuming City has a navigation property called Country
-                .HasForeignKey(c => c.CountryId);  // Assuming City has a foreign key property called CountryId
+                .WithOne(c => c.Country)  // Assuming Cities has a navigation property called Countries
+                .HasForeignKey(c => c.CountryId);  // Assuming Cities has a foreign key property called CountryId
 
         }
     }

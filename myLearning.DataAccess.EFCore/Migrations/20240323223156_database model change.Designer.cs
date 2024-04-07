@@ -23,7 +23,7 @@ namespace myLearning.DataAccess.EFCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("myLearning.Entities.City", b =>
+            modelBuilder.Entity("myLearning.Entities.Cities", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace myLearning.DataAccess.EFCore.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("myLearning.Entities.Country", b =>
+            modelBuilder.Entity("myLearning.Entities.Countries", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,18 +84,18 @@ namespace myLearning.DataAccess.EFCore.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("myLearning.Entities.City", b =>
+            modelBuilder.Entity("myLearning.Entities.Cities", b =>
                 {
-                    b.HasOne("myLearning.Entities.Country", "Country")
+                    b.HasOne("myLearning.Entities.Countries", "Countries")
                         .WithMany("Cities")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Country");
+                    b.Navigation("Countries");
                 });
 
-            modelBuilder.Entity("myLearning.Entities.Country", b =>
+            modelBuilder.Entity("myLearning.Entities.Countries", b =>
                 {
                     b.Navigation("Cities");
                 });

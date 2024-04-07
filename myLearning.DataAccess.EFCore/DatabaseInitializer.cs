@@ -21,7 +21,7 @@ namespace myLearning.DataAccess.EFCore
                 _myLearningDbContexts.Database.Migrate();
             }
 
-            //add many database here
+            //add many more database here
         }
     }
 }

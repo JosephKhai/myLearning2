@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <ProjectReference Include="..\myLearning.Common.Entities\myLearning.Common.Entities.csproj" />
+    <ProjectReference Include="..\myLearning.DTO\myLearning.DTO.csproj" />
+    <ProjectReference Include="..\myLearning.Entities\myLearning.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\myLearning.Application\myLearning.Application.csproj" />
-    <ProjectReference Include="..\myLearning.Common.Entities\myLearning.Common.Entities.csproj" />
-    <ProjectReference Include="..\myLearning.Entities\myLearning.Entities.csproj" />
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
   </ItemGroup>
 
 </Project>

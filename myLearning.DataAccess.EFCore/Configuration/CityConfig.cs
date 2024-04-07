@@ -4,9 +4,9 @@ using myLearning.Entities;
 
 namespace myLearning.DataAccess.EFCore.Configuration
 {
-    public class CityConfig : IEntityTypeConfiguration<City>
+    public class CityConfig : IEntityTypeConfiguration<Cities>
     {
-        public void Configure(EntityTypeBuilder<City> builder)
+        public void Configure(EntityTypeBuilder<Cities> builder)
         {
 
             builder.ToTable("Cities");

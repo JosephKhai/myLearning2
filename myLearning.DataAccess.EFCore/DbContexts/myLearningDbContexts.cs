@@ -6,14 +6,14 @@ using myLearning.Entities;
 
 namespace myLearning.DataAccess.EFCore.DbContexts
 {
-    public class myLearningDbContexts : CommonDbContext
+    public class myLearningDbContexts : CommonDbContextEntityState
     {
         public myLearningDbContexts(DbContextOptions options, IConfiguration configuration) : base(options, configuration)
         {
         }
 
-        public DbSet<City> Cities => Set<City>();
-        public DbSet<Country> Countries => Set<Country>();
+        public DbSet<Cities> Cities => Set<Cities>();
+        public DbSet<Countries> Countries => Set<Countries>();
 
 
 
@@ -27,24 +27,24 @@ namespace myLearning.DataAccess.EFCore.DbContexts
 
 
             ////OR Fluet API
-            //modelBuilder.Entity<City>().ToTable("Cities");
-            //modelBuilder.Entity<City>()
+            //modelBuilder.Entity<Cities>().ToTable("Cities");
+            //modelBuilder.Entity<Cities>()
             //    .HasKey(x => x.Id);
-            //modelBuilder.Entity<City>()
+            //modelBuilder.Entity<Cities>()
             //    .Property(x => x.Id).IsRequired();
-            //modelBuilder.Entity<City>()
+            //modelBuilder.Entity<Cities>()
             //    .Property(x => x.Lat).HasColumnType("decimal(7,4)");
-            //modelBuilder.Entity<City>()
+            //modelBuilder.Entity<Cities>()
             //    .Property(x => x.Lon).HasColumnType("decimal(7,4)");
 
 
-            //modelBuilder.Entity<Country>().ToTable("Countries");
-            //modelBuilder.Entity<Country>()
+            //modelBuilder.Entity<Countries>().ToTable("Countries");
+            //modelBuilder.Entity<Countries>()
             //    .HasKey(x => x.Id);
-            //modelBuilder.Entity<Country>()
+            //modelBuilder.Entity<Countries>()
             //    .Property(x => x.Id).IsRequired();
-            //modelBuilder.Entity<City>()
-            //    .HasOne(x => x.Country)
+            //modelBuilder.Entity<Cities>()
+            //    .HasOne(x => x.Countries)
             //    .WithMany(y => y.Cities)
             //    .HasForeignKey(x => x.CountryId);
 
