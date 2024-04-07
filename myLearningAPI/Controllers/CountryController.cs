@@ -24,9 +24,9 @@ namespace myLearningAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCountryById(int Id)
+        public async Task<IActionResult> GetCountryById(int id)
         {
-            var country = await _countryServices.GetCountryById(Id);
+            var country = await _countryServices.GetCountryById(id);
             return Ok(country);
         }
 

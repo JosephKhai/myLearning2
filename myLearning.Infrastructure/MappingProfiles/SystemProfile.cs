@@ -8,8 +8,11 @@ namespace myLearning.Infrastructure.MappingProfiles
     {
         public SystemProfile()
         {
-            CreateMap<CityDto, Cities>();
-            CreateMap<CountryDto, Countries>();
+            CreateMap<CityDto, Cities>().ReverseMap();
+            CreateMap<CountryDto, Countries>().ReverseMap();
+
+
+
            
         }
     }
