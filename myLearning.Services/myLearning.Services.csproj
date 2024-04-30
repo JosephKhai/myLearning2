@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\myLearning.Common.Utils\myLearning.Common.Utils.csproj" />
+    <ProjectReference Include="..\myLearning.DataAccess.EFCore\myLearning.DataAccess.EFCore.csproj" />
     <ProjectReference Include="..\myLearning.DTO\myLearning.DTO.csproj" />
     <ProjectReference Include="..\myLearning.Infrastructure\myLearning.Infrastructure.csproj" />
     <ProjectReference Include="..\myLearning.Common.Service\myLearning.Common.Service.csproj" />

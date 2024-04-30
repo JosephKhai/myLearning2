@@ -1,7 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using myLearning.Common.Infrastructure.IServices;
-using myLearningAPI.Identity;
+using Microsoft.Extensions.Options;
 using myLearningAPI.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,21 +10,19 @@ var myLearningConnectionString = builder.Configuration.GetConnectionString("AZUR
 // Configure dependencies
 DependenciesConfig.ConfigurDependencies(builder.Services, myLearningConnectionString);
 
-//configuration for Mapper
-var config = new AutoMapper.Configuration.MapperConfigurationExpression();
-AutoMapperConfig.Configure(config);
-AutoMapper.Mapper.Initialize(config); //don't forget to initialize
-
 
 //add httpcontext accessor
 builder.Services.AddHttpContextAccessor();
-// Register ICurrentContextProvider
-builder.Services.AddSingleton<ICurrentContextProvider, CurrentContextProvider>();
 
 
 
 // Add controllers and configure Swagger/OpenAPI
 builder.Services.AddControllers();
+    //.AddJsonOptions(option =>
+    //{
+    //    option.JsonSerializerOptions.WriteIndented = true;
+    //});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

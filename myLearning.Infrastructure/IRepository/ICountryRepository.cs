@@ -1,7 +1,12 @@
 ﻿using myLearning.Common.Entities;
 using myLearning.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace myLearning.Infrastructure.IRepositories
+namespace myLearning.Infrastructure.IRepository
 {
     public interface ICountryRepository
     {

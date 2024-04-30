@@ -2,18 +2,19 @@
 using myLearning.Common.Utils;
 using myLearning.DTO;
 using myLearning.Entities;
-using myLearning.Infrastructure.IRepositories;
-using myLearning.Infrastructure.IServices;
 using myLearning.Common.Service;
 using myLearning.Common.Infrastructure.IServices;
+using myLearning.DataAccess.EFCore.Repositories;
+using myLearning.DataAccess.EFCore;
+using myLearning.Infrastructure.IServices;
 
 namespace myLearning.Services.Services
 {
     public class CityService : BaseService, ICityServices
     {
-        private readonly ICityRepository _cityRepository;
+        private readonly CityRepository _cityRepository;
 
-        public CityService(ICurrentContextProvider currentContextProvider, ICityRepository cityRepository) : base(currentContextProvider)
+        public CityService(ICurrentContextProvider currentContextProvider, CityRepository cityRepository) : base(currentContextProvider)
         {
             _cityRepository = cityRepository;
         }
@@ -31,10 +32,24 @@ namespace myLearning.Services.Services
 
         }
 
-        public async Task<IEnumerable<CityDto>> GetAllCities()
+        public async Task<IEnumerable<CityDto>> GetAllCities(int pageIndex, int pageSize)
         {
-            var citys = await _cityRepository.GetAllCities(_session);
+            var citys = await _cityRepository.GetAllCities(pageIndex, pageSize, _session);
             return citys.MapTo<IEnumerable<CityDto>>();
+        }
+
+
+        public async Task<ApiResult<CityDto>> GetPageResultAsync(int pageIndex, int pageSize)
+        {
+            var cityResult = await _cityRepository.GetPageResultAsync(pageIndex, pageSize, _session);
+
+            var data = cityResult.Data;
+            var total = data.Count();
+
+            var mappedData = data.Select(city => city.MapTo<CityDto>()).ToList();
+
+            return new ApiResult<CityDto>(mappedData, total, pageIndex, pageSize);
+
         }
 
         public async Task<CityDto> GetCityById(int cityId)

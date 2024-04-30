@@ -4,8 +4,8 @@ using myLearning.Common.DataAccess.EFCore.Repositories;
 using myLearning.Common.Entities;
 using myLearning.DataAccess.EFCore.DbContexts;
 using myLearning.Entities;
-using myLearning.Infrastructure.IRepositories;
 using Microsoft.Data.SqlClient;
+using myLearning.DataAccess.EFCore.IRepository;
 
 namespace myLearning.DataAccess.EFCore.Repositories
 {
@@ -15,10 +15,10 @@ namespace myLearning.DataAccess.EFCore.Repositories
         {
         }
 
-        public async Task AddCounty(Countries newCountry, ContextSession session)
+        public async Task AddCounty(Countries newCountry)
         {
 
-            var context = GetContext(session);
+            var context = GetContext();
 
             // Begin a transaction asynchronously
             using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
@@ -48,9 +48,9 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
-        public async Task DeleteCountry(int Id, ContextSession session)
+        public async Task DeleteCountry(int Id)
         {
-            var context = GetContext(session);
+            var context = GetContext();
 
             using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
             {
@@ -74,22 +74,22 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
-        public async Task<IEnumerable<Countries>> GetAllCountries(ContextSession session)
+        public async Task<IEnumerable<Countries>> GetAllCountries()
         {
-            var countries = await GetEntities(session).OrderBy(x => x.Id).ToListAsync();
+            var countries = await GetEntities().OrderBy(x => x.Id).ToListAsync();
             return countries;
         }
 
-        public async Task<Countries> GetCountryById(int Id, ContextSession session)
+        public async Task<Countries> GetCountryById(int Id)
         {
-            return await GetEntities(session)
+            return await GetEntities()
                .Where(country => country.Id == Id)
                .FirstOrDefaultAsync();
         }
 
-        public async Task UpdateCountry(Countries updateCountry, ContextSession session)
+        public async Task UpdateCountry(Countries updateCountry)
         {
-            var context = GetContext(session);
+            var context = GetContext();
 
             using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
             {

@@ -8,7 +8,6 @@ namespace myLearning.DataAccess.EFCore
 {
     public class StoreProcedureName
     {
-        public static string GetAllCities = "[dbo].[GetAllCities]";
         public static string DeleteCity = "[dbo].[DeleteCity]";
         public static string DeleteCountry = "[dbo].[DeleteCountry]";
     }

@@ -13,16 +13,15 @@ namespace myLearning.Common.DataAccess.EFCore.Repositories
             DbContext = dbContext;
         }
 
-        protected IQueryable<TType> GetEntities(ContextSession session)
+        protected IQueryable<TType> GetEntities()
         {
-            var context = GetContext(session);
+            var context = GetContext();
             return context.Set<TType>().AsQueryable().AsNoTracking();
 
         }
 
-        protected TContext GetContext(ContextSession session)
+        protected TContext GetContext()
         {
-            DbContext.Session = session;
             return DbContext;
         }
 
@@ -57,5 +56,8 @@ namespace myLearning.Common.DataAccess.EFCore.Repositories
                 await DbContext.SaveChangesAsync();
             }
         }
+
+        
+
     }
 }

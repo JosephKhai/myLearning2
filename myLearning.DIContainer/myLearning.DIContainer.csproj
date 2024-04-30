@@ -15,10 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\myLearning.Common.Infrastructure\myLearning.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\myLearning.Common.WebApi\myLearning.Common.WebApi.csproj" />
     <ProjectReference Include="..\myLearning.DataAccess.EFCore\myLearning.DataAccess.EFCore.csproj" />
-    <ProjectReference Include="..\myLearning.Services\myLearning.Services.csproj" />
   </ItemGroup>
 
 </Project>

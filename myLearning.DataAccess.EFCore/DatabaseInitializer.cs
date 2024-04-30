@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using myLearning.Common.Infrastructure;
+using myLearning.Common.DataAccess.EFCore;
 using myLearning.DataAccess.EFCore.DbContexts;
 
 namespace myLearning.DataAccess.EFCore

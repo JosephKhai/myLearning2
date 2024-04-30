@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\myLearning.Common.Entities\myLearning.Common.Entities.csproj" />
-    <ProjectReference Include="..\myLearning.Common.Infrastructure\myLearning.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\myLearning.Infrastructure\myLearning.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

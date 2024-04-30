@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using myLearning.DTO;
-using myLearning.Infrastructure.IServices;
+using myLearning.DataAccess.EFCore.IRepository;
+using myLearning.Entities;
+
 
 
 namespace myLearningAPI.Controllers
@@ -10,45 +11,47 @@ namespace myLearningAPI.Controllers
     public class CityController : ControllerBase
     {
 
-        private readonly ICityServices _cityServices;
+        private readonly ICityRepository _cityRepository;
 
-        public CityController(ICityServices cityServices)
+        public CityController(ICityRepository cityRepository)
         {
-            _cityServices = cityServices;
+            _cityRepository = cityRepository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCities()
+        public async Task<IActionResult> GetAllCities(int pageIndex = 0, int pageSize = 10)
         {
-            var city = await _cityServices.GetAllCities();
+            var city = await _cityRepository.GetAllCities(pageIndex, pageSize);
             return Ok(city);
         }
+
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCityById(int id)
         {
-            var cities = await _cityServices.GetCityById(id);
+            var cities = await _cityRepository.GetCityById(id);
             return Ok(cities);
         }
 
         [HttpPost]
-        public async Task AddCity(CityDto newCity)
+        public async Task AddCity(Cities newCity)
         {
-         await _cityServices.AddCity(newCity);
+         await _cityRepository.AddCity(newCity);
    
         }
 
 
         [HttpPut]
-        public async Task UpdateCity(CityDto updateCity)
+        public async Task UpdateCity(Cities updateCity)
         {
-             await _cityServices.UpdateCity(updateCity);
+             await _cityRepository.UpdateCity(updateCity);
         }
 
         [HttpDelete]
         public async Task DeleteCity(int Id)
         {
-            await _cityServices.DeleteCity(Id);
+            await _cityRepository.DeleteCity(Id);
         }
 
 

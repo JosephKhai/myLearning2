@@ -1,11 +1,4 @@
-﻿using MediatR;
-using myLearning.Common.Infrastructure.IServices;
-using myLearning.DataAccess.EFCore.Repositories;
-using myLearning.DIContainer;
-using myLearning.Infrastructure.IRepositories;
-using myLearning.Infrastructure.IServices;
-using myLearning.Services.Services;
-using myLearningAPI.Identity;
+﻿using myLearning.DIContainer;
 
 namespace myLearningAPI.Setup
 {

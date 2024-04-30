@@ -1,14 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using myLearning.Common.Infrastructure;
-using myLearning.Common.Infrastructure.IServices;
-using myLearning.Common.WebApi;
+using myLearning.Common.DataAccess.EFCore;
 using myLearning.DataAccess.EFCore;
 using myLearning.DataAccess.EFCore.DbContexts;
+using myLearning.DataAccess.EFCore.IRepository;
 using myLearning.DataAccess.EFCore.Repositories;
-using myLearning.Infrastructure.IRepositories;
-using myLearning.Infrastructure.IServices;
-using myLearning.Services.Services;
 
 
 namespace myLearning.DIContainer
@@ -20,19 +16,11 @@ namespace myLearning.DIContainer
             services.AddDbContext<myLearningDbContexts>(options => options.UseSqlServer(myLearningConnectionString));
             //add other database context connection here
 
-
             //Add Database initialization
-            //services.AddSingleton<ICurrentContextProvider, CurrentContextProvider>();
             services.AddScoped<IDataBaseInitializer, DatabaseInitializer>();
 
-
-
-            //add IRepository and IServices here
             services.AddTransient<ICityRepository, CityRepository>();
-            services.AddTransient<ICityServices, CityService>();
 
-            services.AddTransient<ICountryRepository, CountryRepository>();
-            services.AddTransient<ICountryServices, CountryService>();
 
 
             /*

@@ -8,9 +8,6 @@ namespace myLearning.Common.DataAccess.EFCore
     public class CommonDbContextEntityState : DbContext
     {
 
-
-        public ContextSession? Session { get; set; }
-
         protected IConfiguration Configuration { get; set; }
 
         public CommonDbContextEntityState(DbContextOptions options, IConfiguration configuration) : base(options)
@@ -50,11 +47,9 @@ namespace myLearning.Common.DataAccess.EFCore
         {
             var now = DateTime.UtcNow;
 
-            entry.Entity.UpdatedByUserId = Session.UserId;
             entry.Entity.LastUpdateDate = now;
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.CreatedByUserId = Session.UserId;
                 entry.Entity.CreatedDate = now;
             }
             else

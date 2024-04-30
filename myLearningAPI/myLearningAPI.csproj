@@ -31,7 +31,6 @@
   <ItemGroup>
     <ProjectReference Include="..\myLearning.DataAccess.EFCore\myLearning.DataAccess.EFCore.csproj" />
     <ProjectReference Include="..\myLearning.DIContainer\myLearning.DIContainer.csproj" />
-    <ProjectReference Include="..\myLearning.Services\myLearning.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

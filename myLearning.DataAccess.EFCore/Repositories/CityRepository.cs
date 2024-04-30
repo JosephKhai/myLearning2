@@ -1,11 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using myLearning.Common.DataAccess.EFCore;
 using myLearning.Common.DataAccess.EFCore.Repositories;
 using myLearning.Common.Entities;
 using myLearning.DataAccess.EFCore.DbContexts;
+using myLearning.DataAccess.EFCore.IRepository;
 using myLearning.Entities;
-using myLearning.Infrastructure.IRepositories;
 
 namespace myLearning.DataAccess.EFCore.Repositories
 {
@@ -15,9 +16,9 @@ namespace myLearning.DataAccess.EFCore.Repositories
         {
         }
 
-        public async Task AddCity(Cities newCity, ContextSession session)
+        public async Task AddCity(Cities newCity)
         {
-            var context = GetContext(session);
+            var context = GetContext();
 
             // Begin a transaction asynchronously
             using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
@@ -47,9 +48,9 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
-        public async Task DeleteCity(int Id, ContextSession session)
+        public async Task DeleteCity(int Id)
         {
-            var context = GetContext(session);
+            var context = GetContext();
 
             using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
             {
@@ -73,22 +74,37 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
-        public async Task<IEnumerable<Cities>> GetAllCities(ContextSession session)
+        public async Task<IEnumerable<Cities>> GetAllCities(int pageIndex, int pageSize)
         {
-            var cities = await GetEntities(session).OrderBy(x => x.Id).ToListAsync();
+            var cities = await GetEntities()
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
+                .OrderBy(x => x.Id)
+                .ToListAsync();
+
             return cities;
         }
 
-        public async Task<Cities> GetCityById(int cityId, ContextSession session)
+        public async Task<ApiResult<Cities>> GetPageResultAsync(int pageIndex, int pageSize)
         {
-            return await GetEntities(session)
+            var source = GetEntities();
+            var count = await source.CountAsync();
+            var data = await source.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+
+            return new ApiResult<Cities>(data, count, pageIndex, pageSize);
+        }
+
+
+        public async Task<Cities> GetCityById(int cityId)
+        {
+            return await GetEntities()
                 .Where(city => city.Id == cityId)
                 .FirstOrDefaultAsync();
         }
 
-        public async Task UpdateCity(Cities updateCity, ContextSession session)
+        public async Task UpdateCity(Cities updateCity)
         {
-            var context = GetContext(session);
+            var context = GetContext();
 
             using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
             {

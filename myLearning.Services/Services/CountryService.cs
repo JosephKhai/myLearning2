@@ -2,10 +2,10 @@
 using myLearning.Common.Utils;
 using myLearning.DTO;
 using myLearning.Entities;
-using myLearning.Infrastructure.IRepositories;
-using myLearning.Infrastructure.IServices;
 using myLearning.Common.Service;
 using myLearning.Common.Infrastructure.IServices;
+using myLearning.Infrastructure.IServices;
+using myLearning.Infrastructure.IRepository;
 
 namespace myLearning.Services.Services
 {
