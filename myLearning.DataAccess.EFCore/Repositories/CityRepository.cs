@@ -74,6 +74,7 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
+        //working
         public async Task<IEnumerable<Cities>> GetAllCities(int pageIndex, int pageSize)
         {
             var cities = await GetEntities()
@@ -95,6 +96,7 @@ namespace myLearning.DataAccess.EFCore.Repositories
         }
 
 
+        //working
         public async Task<Cities> GetCityById(int cityId)
         {
             return await GetEntities()
