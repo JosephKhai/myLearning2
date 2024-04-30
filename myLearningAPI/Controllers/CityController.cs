@@ -25,6 +25,14 @@ namespace myLearningAPI.Controllers
             return Ok(city);
         }
 
+        [HttpGet]
+        [Route("GetAllCitiesPagination")]
+        public async Task<IActionResult> GetAllCitiesPagination(int pageIndex = 0, int pageSize = 10)
+        {
+            var cityResult = await _cityRepository.GetPageResultAsync(pageIndex, pageSize);
+            return Ok(cityResult);
+        }
+
 
 
         [HttpGet("{id}")]
