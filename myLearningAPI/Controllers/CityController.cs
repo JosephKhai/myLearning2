@@ -27,9 +27,23 @@ namespace myLearningAPI.Controllers
 
         [HttpGet]
         [Route("GetAllCitiesPagination")]
-        public async Task<IActionResult> GetAllCitiesPagination(int pageIndex = 0, int pageSize = 10)
+        public async Task<IActionResult> GetAllCitiesPagination(
+            int pageIndex = 0,
+            int pageSize = 10,
+            string? sortColumn = null,
+            string? sortOrder = null,
+            string? filterColumn = null,
+            string? filterQuery = null
+            )
         {
-            var cityResult = await _cityRepository.GetPageResultAsync(pageIndex, pageSize);
+            var cityResult = await _cityRepository.GetPageResultAsync(
+                pageIndex,
+                pageSize, 
+                sortColumn, 
+                sortOrder, 
+                filterColumn, 
+                filterQuery);
+
             return Ok(cityResult);
         }
 

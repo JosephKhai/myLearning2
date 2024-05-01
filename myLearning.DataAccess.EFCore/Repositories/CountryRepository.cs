@@ -80,6 +80,29 @@ namespace myLearning.DataAccess.EFCore.Repositories
             return countries;
         }
 
+        public async Task<ApiResult<Countries>> GetPageResultAsync(
+            int pageIndex,
+            int pageSize,
+            string sortColumn,
+            string sortOrder,
+            string filterColumn,
+            string filterQuery)
+        {
+            var source = GetEntities();
+            var count = await source.CountAsync();
+            var data = await source.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+
+            return new ApiResult<Countries>(
+                data,
+                count,
+                pageIndex,
+                pageSize,
+                sortColumn,
+                sortOrder,
+                filterColumn,
+                filterQuery);
+        }
+
         public async Task<Countries> GetCountryById(int Id)
         {
             return await GetEntities()

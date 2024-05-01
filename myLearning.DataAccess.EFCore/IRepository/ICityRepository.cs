@@ -10,7 +10,14 @@ namespace myLearning.DataAccess.EFCore.IRepository
     public interface ICityRepository
     {
         Task<IEnumerable<Cities>> GetAllCities(int pageIndex, int pageSize);
-        Task<ApiResult<Cities>> GetPageResultAsync(int pageIndex, int pageSize);
+        Task<ApiResult<Cities>> GetPageResultAsync(
+            int pageIndex, 
+            int pageSize, 
+            string sortColumn, 
+            string sortOrder,
+            string filterColumn,
+            string filterQuery
+            );
         Task<Cities> GetCityById(int cityId);
         Task AddCity(Cities newCity);
         Task UpdateCity(Cities updateCity);

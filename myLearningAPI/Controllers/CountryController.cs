@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using myLearning.DataAccess.EFCore;
 using myLearning.DataAccess.EFCore.IRepository;
 using myLearning.Entities;
 
@@ -23,6 +24,28 @@ namespace myLearningAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("GetAllCountriesPagination")]
+        public async Task<IActionResult> GetPageResultAsync(
+            int pageIndex = 0,
+            int pageSize = 10,
+            string? sortColumn = null,
+            string? sortOrder = null,
+            string? filterColumn = null,
+            string? filterQuery = null)
+        {
+            var cityResult = await _countryRepository.GetPageResultAsync(
+                 pageIndex,
+                pageSize,
+                sortColumn,
+                sortOrder,
+                filterColumn,
+                filterQuery
+                );
+
+            return Ok(cityResult);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCountryById(int id)
         {
@@ -33,7 +56,7 @@ namespace myLearningAPI.Controllers
         [HttpPost]
         public async Task AddCounty(Countries newCountry)
         {
-          await _countryRepository.AddCounty(newCountry);
+            await _countryRepository.AddCounty(newCountry);
         }
 
         [HttpPut]

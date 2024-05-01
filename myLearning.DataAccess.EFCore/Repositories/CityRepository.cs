@@ -1,9 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using myLearning.Common.DataAccess.EFCore;
 using myLearning.Common.DataAccess.EFCore.Repositories;
-using myLearning.Common.Entities;
 using myLearning.DataAccess.EFCore.DbContexts;
 using myLearning.DataAccess.EFCore.IRepository;
 using myLearning.Entities;
@@ -48,6 +46,7 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
+        //working
         public async Task DeleteCity(int Id)
         {
             var context = GetContext();
@@ -86,13 +85,29 @@ namespace myLearning.DataAccess.EFCore.Repositories
             return cities;
         }
 
-        public async Task<ApiResult<Cities>> GetPageResultAsync(int pageIndex, int pageSize)
+
+        //working
+        public async Task<ApiResult<Cities>> GetPageResultAsync(
+            int pageIndex,
+            int pageSize,
+            string sortColumn,
+            string sortOrder,
+            string filterColumn,
+            string filterQuery)
         {
             var source = GetEntities();
             var count = await source.CountAsync();
             var data = await source.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 
-            return new ApiResult<Cities>(data, count, pageIndex, pageSize);
+            return new ApiResult<Cities>(
+                data,
+                count,
+                pageIndex,
+                pageSize,
+                sortColumn,
+                sortOrder,
+                filterColumn,
+                filterQuery);
         }
 
 

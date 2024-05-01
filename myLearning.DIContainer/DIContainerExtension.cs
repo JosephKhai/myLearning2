@@ -20,6 +20,7 @@ namespace myLearning.DIContainer
             services.AddScoped<IDataBaseInitializer, DatabaseInitializer>();
 
             services.AddTransient<ICityRepository, CityRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
 
 
 
