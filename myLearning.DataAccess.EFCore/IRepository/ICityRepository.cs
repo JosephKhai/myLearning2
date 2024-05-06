@@ -22,5 +22,6 @@ namespace myLearning.DataAccess.EFCore.IRepository
         Task AddCity(Cities newCity);
         Task UpdateCity(Cities updateCity);
         Task DeleteCity(int Id);
+        bool IsDuplicateCity(Cities city);
     }
 }

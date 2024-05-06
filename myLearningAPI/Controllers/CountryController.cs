@@ -16,7 +16,7 @@ namespace myLearningAPI.Controllers
             _countryRepository = countryRepository;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         public async Task<IActionResult> GetAllCountries()
         {
             var countries = await _countryRepository.GetAllCountries();

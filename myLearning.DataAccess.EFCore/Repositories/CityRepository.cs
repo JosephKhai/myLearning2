@@ -143,5 +143,25 @@ namespace myLearning.DataAccess.EFCore.Repositories
                 }
             }
         }
+
+        public bool IsDuplicateCity(Cities city)
+        {
+            var context = GetContext();
+
+            return context.Cities.Any(
+                e => e.Name == city.Name &&
+                e.Lat == city.Lat &&
+                e.Lon == city.Lon &&
+                e.CountryId == city.CountryId &&
+                e.Id == city.Id
+                );
+        }
+
+        private bool CityExists(int id)
+        {
+            var context = GetContext();
+
+            return context.Cities.Any(e => e.Id == id);
+        }
     }
 }

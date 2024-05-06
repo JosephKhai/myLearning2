@@ -76,7 +76,7 @@ namespace myLearning.DataAccess.EFCore.Repositories
 
         public async Task<IEnumerable<Countries>> GetAllCountries()
         {
-            var countries = await GetEntities().OrderBy(x => x.Id).ToListAsync();
+            var countries = await GetEntities().OrderBy(x => x.Name).ToListAsync();
             return countries;
         }
 

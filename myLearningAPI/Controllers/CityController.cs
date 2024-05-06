@@ -56,7 +56,7 @@ namespace myLearningAPI.Controllers
             return Ok(cities);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task AddCity(Cities newCity)
         {
          await _cityRepository.AddCity(newCity);
@@ -64,10 +64,25 @@ namespace myLearningAPI.Controllers
         }
 
 
-        [HttpPut]
-        public async Task UpdateCity(Cities updateCity)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCity(int id, [FromBody]Cities city)
         {
-             await _cityRepository.UpdateCity(updateCity);
+            if(id != city.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _cityRepository.UpdateCity(city);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating city");
+            }
+
+            return Ok(city);
+             
         }
 
         [HttpDelete]
@@ -76,6 +91,13 @@ namespace myLearningAPI.Controllers
             await _cityRepository.DeleteCity(Id);
         }
 
+
+        [HttpPost]
+        [Route("IsDuplicate")]
+        public bool IsDuplicateCity(Cities city)
+        {
+            return _cityRepository.IsDuplicateCity(city);
+        }
 
 
 
