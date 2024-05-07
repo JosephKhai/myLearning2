@@ -134,5 +134,35 @@ namespace myLearning.DataAccess.EFCore.Repositories
                 }
             }
         }
+
+        public bool IsDuplicateCountry(Countries country)
+        {
+            var context = GetContext();
+
+
+            var result = context.Countries.Any(
+               e => e.Name == country.Name &&
+               e.ISO2 == country.ISO2 &&
+               e.ISO3 == country.ISO3 &&
+               e.Id == country.Id
+               );
+
+            if (result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        private bool CountryExists(int id)
+        {
+            var context = GetContext();
+
+            return context.Countries.Any(e => e.Id == id);
+        }
     }
 }

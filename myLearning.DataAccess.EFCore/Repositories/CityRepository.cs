@@ -74,14 +74,9 @@ namespace myLearning.DataAccess.EFCore.Repositories
         }
 
         //working
-        public async Task<IEnumerable<Cities>> GetAllCities(int pageIndex, int pageSize)
+        public async Task<IEnumerable<Cities>> GetAllCities()
         {
-            var cities = await GetEntities()
-                .Skip(pageIndex * pageSize)
-                .Take(pageSize)
-                .OrderBy(x => x.Id)
-                .ToListAsync();
-
+            var cities = await GetEntities().OrderBy(x => x.Id).ToListAsync();
             return cities;
         }
 
@@ -148,13 +143,22 @@ namespace myLearning.DataAccess.EFCore.Repositories
         {
             var context = GetContext();
 
-            return context.Cities.Any(
+  
+             var result = context.Cities.Any(
                 e => e.Name == city.Name &&
                 e.Lat == city.Lat &&
                 e.Lon == city.Lon &&
-                e.CountryId == city.CountryId &&
-                e.Id == city.Id
+                e.CountryId == city.CountryId 
                 );
+
+            if (result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private bool CityExists(int id)

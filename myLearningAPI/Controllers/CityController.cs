@@ -18,10 +18,10 @@ namespace myLearningAPI.Controllers
             _cityRepository = cityRepository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllCities(int pageIndex = 0, int pageSize = 10)
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetAllCities()
         {
-            var city = await _cityRepository.GetAllCities(pageIndex, pageSize);
+            var city = await _cityRepository.GetAllCities();
             return Ok(city);
         }
 

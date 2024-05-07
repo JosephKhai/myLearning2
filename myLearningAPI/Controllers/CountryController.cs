@@ -53,16 +53,29 @@ namespace myLearningAPI.Controllers
             return Ok(country);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task AddCounty(Countries newCountry)
         {
             await _countryRepository.AddCounty(newCountry);
         }
 
-        [HttpPut]
-        public async Task UpdateCountry(Countries updateCountry)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCountry(int id, [FromBody]Countries country)
         {
-            await _countryRepository.UpdateCountry(updateCountry);
+            if(id != country.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                await _countryRepository.UpdateCountry(country);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating country");
+            }
+
+            return Ok(country);
         }
 
 
@@ -70,6 +83,13 @@ namespace myLearningAPI.Controllers
         public async Task DeleteCountry(int Id)
         {
             await _countryRepository.DeleteCountry(Id);
+        }
+
+        [HttpPost]
+        [Route("isDuplicateField")]
+        public bool IsDuplicateField(Countries country)
+        {
+            return _countryRepository.IsDuplicateCountry(country);
         }
 
 

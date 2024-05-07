@@ -22,5 +22,7 @@ namespace myLearning.DataAccess.EFCore.IRepository
         Task AddCounty(Countries newCountry);
         Task UpdateCountry(Countries updateCountry);
         Task DeleteCountry(int Id);
+
+        bool IsDuplicateCountry(Countries country);
     }
 }
