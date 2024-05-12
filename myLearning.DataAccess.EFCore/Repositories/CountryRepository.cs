@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore;
 using myLearning.Common.DataAccess.EFCore.Repositories;
-using myLearning.Common.Entities;
 using myLearning.DataAccess.EFCore.DbContexts;
 using myLearning.Entities;
 using Microsoft.Data.SqlClient;
 using myLearning.DataAccess.EFCore.IRepository;
+using System.Linq.Dynamic.Core;
 
 namespace myLearning.DataAccess.EFCore.Repositories
 {
@@ -135,26 +135,28 @@ namespace myLearning.DataAccess.EFCore.Repositories
             }
         }
 
-        public bool IsDuplicateCountry(Countries country)
+        public bool IsDuplicateCountry(string countryId, string fieldName, string fieldValue)
         {
             var context = GetContext();
 
+            //switch(fieldName)
+            //{
+            //    case "name":
+            //        return context.Countries.Any(c => c.Name == fieldValue && c.Id != countryId);
+            //    case "iso2":
+            //        return context.Countries.Any(c => c.ISO2 == fieldValue && c.Id != countryId);
+            //    case "is03":
+            //        return context.Countries.Any(c => c.ISO3 == fieldValue && c.Id != countryId);
+            //    default:
+            //        return false;
+            //} 
 
-            var result = context.Countries.Any(
-               e => e.Name == country.Name &&
-               e.ISO2 == country.ISO2 &&
-               e.ISO3 == country.ISO3 &&
-               e.Id == country.Id
-               );
-
-            if (result)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //alternative approach using system.Linq.Dynamic.Core
+            return (ApiResult<Countries>.IsValidProperty(fieldName, true)) ? context.Countries.Any(
+                string.Format("{0} == @0 && Id != @1", fieldName),
+                fieldValue,
+                countryId)
+                : false;
 
         }
 

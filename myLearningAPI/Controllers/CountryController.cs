@@ -86,10 +86,10 @@ namespace myLearningAPI.Controllers
         }
 
         [HttpPost]
-        [Route("isDuplicateField")]
-        public bool IsDuplicateField(Countries country)
+        [Route("IsDuplicateField")]
+        public bool IsDuplicateField(string countryId, string fieldName, string fieldValue)
         {
-            return _countryRepository.IsDuplicateCountry(country);
+            return _countryRepository.IsDuplicateCountry(countryId, fieldName, fieldValue);
         }
 
 

@@ -84,7 +84,7 @@ namespace myLearning.DataAccess.EFCore
             return new ApiResult<T>(data, count, pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
 
-        private static bool IsValidProperty(string propertyName, bool throwExceptionIfNotFound = true)
+        public static bool IsValidProperty(string propertyName, bool throwExceptionIfNotFound = true)
         {
             var prop = typeof(T).GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
